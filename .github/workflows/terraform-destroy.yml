@@ -1,0 +1,38 @@
+name: 'Terraform Destroy'
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: eu-central-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+  TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+  TF_VAR_aws_key_pair: ${{ secrets.AWS_KEY_PAIR }}
+  TF_VAR_wp_db_name: ${{ secrets.WP_DB_NAME }}
+  TF_VAR_wp_db_user: ${{ secrets.WP_DB_USER }}
+  TF_VAR_wp_db_pass: ${{ secrets.WP_DB_PASS }}
+  TF_VAR_wp_admin_name: ${{ secrets.WP_ADMIN_NAME }}
+  TF_VAR_wp_admin_pass: ${{ secrets.WP_ADMIN_PASS }}
+  TF_VAR_wp_admin_email: ${{ secrets.WP_ADMIN_EMAIL }}
+
+jobs:  
+  destroy:
+    name: 'Destroy project'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        shell: bash
+    steps: 
+     - name: Checkout
+       uses: actions/checkout@v2
+     - name: Setup Terraform
+       uses: hashicorp/setup-terraform@v1
+     - name: Terraform Init
+       run: terraform init
+     - name: Terraform Show
+       run: terraform show
+     - name: Terraform Destroy
+       run: terraform destroy -auto-approve
