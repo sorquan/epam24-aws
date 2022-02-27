@@ -13,3 +13,4 @@ sudo -u www-data sed -i 's/username_here/${db_user}/' /var/www/html/wp-config.ph
 sudo -u www-data sed -i 's/password_here/${db_pass}/' /var/www/html/wp-config.php
 sudo -u www-data sed -i 's/localhost/${db_endpoint}/' /var/www/html/wp-config.php
 sudo -u www-data wp core is-installed --path=/var/www/html/ || sudo -u www-data wp core install --url=${site_url} --title="EPAM AWS Task (ZhdanovAS)" --admin_user=${admin_name} --admin_password=${admin_pass} --admin_email=${admin_email} --path='/var/www/html/' --skip-email
+sudo -u www-data wp plugin --path=/var/www/html install server-ip-memory-usage --activate
