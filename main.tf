@@ -375,7 +375,7 @@ resource "aws_autoscaling_policy" "scale_in_one" {
 }
 
 output "site_address" {
-  value       = aws_lb.wp_lb.dns_name
+  value       = "http://${aws_lb.wp_lb.dns_name}"
   description = "ELB public address"
   depends_on  = [aws_lb.wp_lb]
 }
