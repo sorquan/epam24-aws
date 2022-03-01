@@ -40,5 +40,7 @@ jobs:
        run: terraform init
      - name: Terraform Format
        run: terraform fmt -check
+     - name: Terraform Show
+       run: terraform show
      - name: Terraform Apply
        run: terraform apply -auto-approve
