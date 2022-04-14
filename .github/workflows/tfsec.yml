@@ -9,9 +9,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]  
-  schedule:
-    - cron: '24 19 * * 5'
+    branches: [ master ]
 
 jobs:
   tfsec:
